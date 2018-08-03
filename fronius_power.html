@@ -8,10 +8,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$.get( "fronius.php", function( data ) {
-		document.getElementById('power').innerHTML = " Power: " + data + "W";
-	});
-
+	var timer;
+	
+	function getPower() {
+		$.ajax({
+			url: "fronius.php",
+			success: function(data) {
+				document.getElementById('power').innerHTML = " Power: " + data + "W";
+			},
+			error: function(data) {
+				document.getElementById('power').innerHTML = "Unable to get Power value, is the sun shining?";
+			}
+		});
+	}
+	
+	window.onload = function() {
+		getPower();
+		timer = setInterval(getPower, 5000);
+	}
 </script>
 </head>
 <body>
