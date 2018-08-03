@@ -6,8 +6,5 @@ $solar = json_decode($jsonData, true);
 // Real time AC being fed into the mains
 $solarPower = $solar["Body"]["Data"]["PAC"]["Value"];
 echo $solarPower;
-/*$solarArray = array('power' => $solarPower);
-$solarjson = json_encode($solarArray);
-echo $solarjson;
-*/
+
 ?>
